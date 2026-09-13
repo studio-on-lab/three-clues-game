@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="매일 세 개의 단서로 하나의 공통 정답을 맞히는 1분 데일리 웹게임, 세잇단서." />
+  <meta name="theme-color" content="#f7f7f7" />
+  <title>세잇단서 — 매일 1분 연상게임</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">오늘의 1분 게임</p>
+        <h1>세잇단서</h1>
+      </div>
+      <button class="icon-btn" id="helpBtn" aria-label="게임 방법">?</button>
+    </header>
+
+    <section class="card hero">
+      <div class="day-badge" id="dayBadge">DAY 1</div>
+      <p class="question">세 단서가 가리키는 <strong>하나의 단어</strong>는?</p>
+
+      <div class="clues" id="clues" aria-live="polite"></div>
+
+      <form id="answerForm" class="answer-form" autocomplete="off">
+        <label class="sr-only" for="answerInput">정답 입력</label>
+        <input id="answerInput" maxlength="20" placeholder="정답을 입력하세요" />
+        <button type="submit">확인</button>
+      </form>
+
+      <p class="feedback" id="feedback" aria-live="polite"></p>
+
+      <button class="secondary" id="hintBtn" type="button">힌트 한 개 열기</button>
+    </section>
+
+    <section class="card stats">
+      <div><strong id="tries">0</strong><span>시도</span></div>
+      <div><strong id="streak">0</strong><span>연속 성공</span></div>
+      <div><strong id="wins">0</strong><span>누적 성공</span></div>
+    </section>
+
+    <section class="card result hidden" id="resultCard">
+      <p class="eyebrow">오늘도 성공!</p>
+      <h2 id="resultTitle">정답</h2>
+      <p id="resultCopy"></p>
+      <button id="shareBtn">결과 공유</button>
+    </section>
+
+    <section class="ad-placeholder" aria-label="광고 영역">
+      <span>광고 영역</span>
+      <small>승인 후 삽입</small>
+    </section>
+
+    <footer>
+      <p>세잇단서는 독자적으로 제작된 데일리 연상 게임입니다.</p>
+      <nav>
+        <button class="link-btn" id="privacyBtn">개인정보 안내</button>
+        <button class="link-btn" id="legalBtn">권리 안내</button>
+      </nav>
+    </footer>
+  </main>
+
+  <dialog id="modal">
+    <div class="modal-head">
+      <h2 id="modalTitle">게임 방법</h2>
+      <button class="icon-btn" id="closeModal" aria-label="닫기">×</button>
+    </div>
+    <div id="modalBody"></div>
+  </dialog>
+
+  <script src="./game.js"></script>
+</body>
+</html>
