@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://studio-on-lab.github.io/three-clues-game/sitemap.xml
