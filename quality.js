@@ -116,10 +116,13 @@ render=function(){baseRender();enhanceResult();};
 render();
 
 $('#share').onclick=async()=>{
-  const blocks=['🟩','🟩','🟨','🟧','🟥'].slice(0,t.revealed).join('');
-  const text=`세잇단서 DAY ${di+1}\n${blocks}\n🎯 ${t.score}점 · 단서 ${t.revealed}/5 · 시도 ${t.tries}회\n오늘의 정답은 비밀!`;
+  if(!t.won)return;
+  const rank=t.score>=95?'S':t.score>=80?'A':t.score>=60?'B':'C';
+  const cells=Array.from({length:5},(_,i)=>i<t.revealed?'■':'□').join('');
+  const url='https://studio-on-lab.github.io/three-clues-game/';
+  const text=`세잇단서 DAY ${di+1}\n${cells} ${rank}등급\n🎯 ${t.score}점 · 단서 ${t.revealed}/5 · 오답 ${Math.max(0,t.tries-1)}회\n🔥 연속 ${s.stats.streak}일\n오늘의 정답은 비밀!\n${url}`;
   try{
-    if(navigator.share) await navigator.share({title:'세잇단서',text});
-    else{await navigator.clipboard.writeText(text);alert('결과를 복사했어요.');}
+    if(navigator.share) await navigator.share({title:`세잇단서 DAY ${di+1}`,text,url});
+    else{await navigator.clipboard.writeText(text);alert('결과와 게임 주소를 복사했어요.');}
   }catch{}
 };
